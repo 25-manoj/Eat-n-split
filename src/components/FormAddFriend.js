@@ -1,6 +1,6 @@
 import Button from "./Button";
 
-export function FormAddFriend() {
+export default function FormAddFriend() {
   return (
     <form className="form-add-friend">
       <label>Friend Name</label>
