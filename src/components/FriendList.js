@@ -1,8 +1,6 @@
 import Friend from "./Friend";
-import { initialFriends } from "./App";
 
-export default function FriendList() {
-  const friends = initialFriends;
+export default function FriendList({ friends }) {
   return (
     <ul>
       {friends.map((friend) => (
