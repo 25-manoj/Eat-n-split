@@ -1,12 +1,17 @@
 import { useState } from "react";
-
-export default function FormSplitBill({ selectedFriend }) {
+import Button from "./Button";
+export default function FormSplitBill({ selectedFriend, onSplitBill }) {
   const [bill, setBill] = useState("");
   const [paidByUser, setPaidByUser] = useState("");
   const paidByFriend = bill ? bill - paidByUser : "";
   const [whoIsPaying, setWhoIsPaying] = useState("user");
+  function handelSubmit(e) {
+    e.preventDefault();
+    onSplitBill(whoIsPaying === "user" ? paidByFriend : -paidByUser);
+    if (!bill || !paidByUser) return;
+  }
   return (
-    <form className="form-split-bill">
+    <form className="form-split-bill" onSubmit={handelSubmit}>
       <h2>Split the bill with {selectedFriend.name}</h2>
 
       <label>bill value</label>
@@ -38,6 +43,7 @@ export default function FormSplitBill({ selectedFriend }) {
         <option value="user">you</option>
         <option value="friend">{selectedFriend.name}</option>
       </select>
+      <Button>Split Bill</Button>
     </form>
   );
 }
