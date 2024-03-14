@@ -32,20 +32,20 @@ export default function App() {
 
   const [selectedFriend, setSelectedFriend] = useState(null);
 
-  function handelAddFriend(newFriend) {
+  function handleAddFriend(newFriend) {
     setFriends((friends) => [newFriend, ...friends]);
     setShowAddFriend(false);
   }
 
-  function handelShowAddFriend() {
+  function handleShowAddFriend() {
     setShowAddFriend((show) => !show);
   }
 
-  function handelSelection(friend) {
+  function handleSelection(friend) {
     setSelectedFriend((cur) => (cur?.id === friend.id ? null : friend));
     setShowAddFriend(false);
   }
-  function handelSplitBill(updatedValue) {
+  function handleSplitBill(updatedValue) {
     setFriends((friends) =>
       friends.map((friend) =>
         friend.id === selectedFriend.id
@@ -60,20 +60,20 @@ export default function App() {
       <div className="sidebar">
         <FriendList
           friends={friends}
-          onSelection={handelSelection}
+          onSelection={handleSelection}
           selectedFriend={selectedFriend}
         />
 
-        {showAddFriend && <FormAddFriend onAddFriend={handelAddFriend} />}
+        {showAddFriend && <FormAddFriend onAddFriend={handleAddFriend} />}
 
-        <Button onClick={handelShowAddFriend}>
+        <Button onClick={handleShowAddFriend}>
           {showAddFriend ? "Close" : "Add Friends"}
         </Button>
       </div>
       {selectedFriend && (
         <FormSplitBill
           selectedFriend={selectedFriend}
-          onSplitBill={handelSplitBill}
+          onSplitBill={handleSplitBill}
           key={selectedFriend.id}
         />
       )}

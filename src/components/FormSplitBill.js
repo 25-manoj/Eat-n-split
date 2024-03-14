@@ -5,13 +5,13 @@ export default function FormSplitBill({ selectedFriend, onSplitBill }) {
   const [paidByUser, setPaidByUser] = useState("");
   const paidByFriend = bill ? bill - paidByUser : "";
   const [whoIsPaying, setWhoIsPaying] = useState("user");
-  function handelSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
     onSplitBill(whoIsPaying === "user" ? paidByFriend : -paidByUser);
     if (!bill || !paidByUser) return;
   }
   return (
-    <form className="form-split-bill" onSubmit={handelSubmit}>
+    <form className="form-split-bill" onSubmit={handleSubmit}>
       <h2>Split the bill with {selectedFriend.name}</h2>
 
       <label>bill value</label>
